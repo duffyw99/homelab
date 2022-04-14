@@ -19,7 +19,9 @@
 			},
 			{
 				"label": "TZ",
-				"name": "TZ"
+				"name": "TZ",
+				"default": "america/new_york",
+				"description": "Specify a timezone to use for example America/New_York"
 			}
 		],
 		"image": "lscr.io/linuxserver/jellyfin:latest",
@@ -158,6 +160,212 @@
 			{
 				"container": "/config",
 				"bind": "/volume1/docker/homeassistant/config"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Gaming"
+		],
+		"description": "Server version of minetest, a free, open source alternative to minecraft.",
+		"env": [
+			{
+				"default": "1000",
+				"label": "PUID",
+				"name": "PUID"
+			},
+			{
+				"default": "100",
+				"label": "PGID",
+				"name": "PGID"
+			}
+		],
+		"image": "lscr.io/linuxserver/minetest:latest",
+		"logo": "https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/minetest-icon.png",
+		"name": "minetest",
+		"platform": "linux",
+		"ports": [
+			"30000:30000/udp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Minetest",
+		"type": 1,
+		"volumes": [
+			{
+				"container": "/config/.minetest"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Proxy",
+			"Tools"
+		],
+		"description": "Nginx Proxy Manager enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.",
+		"image": "jlesage/nginx-proxy-manager",
+		"logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/proxy_mgr.png",
+		"name": "nginx-proxy-manager",
+		"platform": "linux",
+		"ports": [
+			"80:8080/tcp",
+			"81:8181/tcp",
+			"443:4443/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Nginx Proxy Manager",
+		"type": 1,
+		"volumes": [
+			{
+				"bind": "/portainer/Files/AppData/Config/Nginx-Proxy",
+				"container": "/config"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Other",
+			"Tools"
+		],
+		"description": "Code-server is VS Code running on a remote server, accessible through the browser.",
+		"env": [
+			{
+				"default": "1000",
+				"label": "PUID",
+				"name": "PUID"
+			},
+			{
+				"default": "1000",
+				"label": "PUID",
+				"name": "GUID"
+			},
+			{
+				"label": "TZ",
+				"name": "TZ",
+				"default": "america/new_york",
+				"description": "Specify a timezone to use for example America/New_York"
+			},
+			{
+				"label": "PASSWORD",
+				"name": "PASSWORD"
+			},
+			{
+				"label": "SUDO_PASSWORD",
+				"name": "SUDO_PASSWORD"
+			},
+			{
+				"default": "example.my.domain",
+				"label": "PROXY_DOMAIN",
+				"name": "PROXY_DOMAIN"
+			}
+		],
+		"image": "lscr.io/linuxserver/code-server:latest",
+		"logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/code-server.png",
+		"name": "code-server",
+		"platform": "linux",
+		"ports": [
+			"8443:8443/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Code Server",
+		"type": 1,
+		"volumes": [
+			{
+				"bind": "/portainer/Files/AppData/Config/Code-Server",
+				"container": "/config"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Downloaders",
+			"Other",
+			"Video",
+			"Tools"
+		],
+		"description": "Simple automated way for users to request new content for Plex.",
+		"env": [
+			{
+				"default": "1000",
+				"label": "PUID",
+				"name": "PUID"
+			},
+			{
+				"default": "100",
+				"label": "PGID",
+				"name": "PGID"
+			},
+			{
+				"label": "URL_BASE",
+				"name": "URL_BASE",
+				"set": ""
+			}
+		],
+		"image": "lscr.io/linuxserver/plexrequests:latest",
+		"logo": "https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/plexrequests-icon.png",
+		"name": "plexrequests",
+		"platform": "linux",
+		"ports": [
+			"3000:3000/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Plex Requests",
+		"type": 1,
+		"volumes": [
+			{
+				"bind": "/portainer/Files/AppData/Config/PlexRequests",
+				"container": "/config"
+			}
+		]
+	},
+	{
+		"description": "[Emulatorjs](https://github.com/linuxserver/emulatorjs) - In browser web based emulation portable to nearly any device for many retro consoles. A mix of emulators is used between Libretro and EmulatorJS.",
+		"env": [
+			{
+				"name": "PUID",
+				"label": "PUID",
+				"default": "1024",
+				"description": "for UserID"
+			},
+			{
+				"name": "PGID",
+				"label": "PGID",
+				"default": "100",
+				"description": "for GroupID"
+			},
+			{
+				"name": "TZ",
+				"label": "TZ",
+				"default": "america/new_york",
+				"description": "Specify a timezone to use for example America/New_York"
+			},
+			{
+				"name": "SUBFOLDER",
+				"label": "SUBFOLDER",
+				"default": "/",
+				"description": "Specify a subfolder for reverse proxies IE '/FOLDER/'"
+			}
+		],
+		"image": "linuxserver/emulatorjs:latest",
+		"logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/emulatorjs-logo.png",
+		"name": "Emulatorjs",
+		"note": "Portainer App Templates based on data provided by <a href='https://www.linuxserver.io' target='_blank'>LinuxServer.io</a>.</p><p>Don't forget to create the volume directories on the host file system.</p><p>mkdir -p /volume1/docker/emulatorjs/config<br>mkdir -p /volume1/docker/emulatorjs/data</p>",
+		"platform": "linux",
+		"ports": [
+			"3000:3000/tcp",
+			"80:80/tcp",
+			"4001:4001/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Emulatorjs",
+		"type": 1,
+		"volumes": [
+			{
+				"container": "/config",
+				"bind": "/volume1/docker/emulatorjs/config"
+			},
+			{
+				"container": "/data",
+				"bind": "/volume1/docker/emulatorjs/data"
 			}
 		]
 	}
