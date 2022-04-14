@@ -1,373 +1,164 @@
 [
-    {
-        "categories": [
-            "Video",
-            "Music",
-            "Photos"
-        ],
-        "description": "Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps.",
-        "env": [
-            {
-                "default": "1000",
-                "label": "PUID",
-                "name": "PUID"
-            },
-            {
-                "default": "100",
-                "label": "PGID",
-                "name": "PGID"
-            },
-            {
-                "label": "TZ",
-                "name": "TZ",
-                "default": "america/new_york",
-                "description": "Specify a timezone to use for example America/New_York"
-            }
-        ],
-        "image": "lscr.io/linuxserver/jellyfin:latest",
-        "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/jellyfin.png",
-        "name": "jellyfin",
-        "platform": "linux",
-        "ports": [
-            "8096:8096/tcp",
-            "8920:8920/tcp"
-        ],
-        "restart_policy": "unless-stopped",
-        "title": "Jellyfin",
-        "type": 1,
-        "volumes": [
-            {
-                "bind": "/portainer/Files/AppData/Config/Jelllyfin",
-                "container": "/config"
-            },
-            {
-                "bind": "/portainer/TV",
-                "container": "/data/tvshows"
-            },
-            {
-                "bind": "/portainer/Movies",
-                "container": "/data/movies"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Pi-Hole",
-        "name": "pihole",
-        "description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
-        "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/pihole.png",
-        "image": "pihole/pihole:latest",
-        "categories": [
-            "Other",
-            "Tools"
-        ],
-        "platform": "linux",
-        "restart_policy": "unless-stopped",
-        "ports": [
-            "53:53/tcp",
-            "53:53/udp",
-            "67:67/udp",
-            "1010:80/tcp",
-            "4443:443/tcp"
-        ],
-        "volumes": [
-            {
-                "container": "/etc/pihole",
-                "bind": "/portainer/Files/AppData/Config/PiHole"
-            },
-            {
-                "container": "/etc/dnsmasq.d",
-                "bind": "/portainer/Files/AppData/Config/PiHole/DNS"
-            }
-        ],
-        "note": "When the installation is complete, navigate to your.ip.goes.here:1010/admin. Follow the article <a href='https://medium.com/@niktrix/getting-rid-of-systemd-resolved-consuming-port-53-605f0234f32f'>here</a> if you run into issues binding to port 53."
-    },
-    {
-        "categories": [
-            "Tools",
-            "Web",
-            "Other"
-        ],
-        "description": "Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.",
-        "env": [
-            {
-                "default": "1000",
-                "label": "PUID",
-                "name": "PUID"
-            },
-            {
-                "default": "100",
-                "label": "PGID",
-                "name": "PGID"
-            }
-        ],
-        "image": "lscr.io/linuxserver/heimdall:latest",
-        "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/heimdall-icon.png",
-        "name": "heimdall",
-        "platform": "linux",
-        "ports": [
-            "80/tcp",
-            "443/tcp"
-        ],
-        "restart_policy": "unless-stopped",
-        "title": "Heimdall",
-        "type": 1,
-        "volumes": [
-            {
-                "bind": "/portainer/Files/AppData/Config/Heimdall",
-                "container": "/config"
-            }
-        ]
-    },
-    {
-        "type": 1,
-        "title": "Homeassistant",
-        "name": "Homeassistant",
-        "note": "Portainer App Templates based on data provided by <a href='https://www.linuxserver.io' target='_blank'>LinuxServer.io</a>.</p><p>Don't forget to create the volume directories on the host file system.</p><p>mkdir -p /volume1/docker/homeassistant/config</p>",
-        "description": "[Home Assistant Core](https://www.home-assistant.io/) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.",
-        "categories": [
-            "Home Automation"
-        ],
-        "platform": "linux",
-        "logo": "https://github.com/home-assistant/home-assistant.io/raw/next/source/images/favicon-192x192-full.png",
-        "image": "linuxserver/homeassistant:latest",
-        "network": "host",
-        "env": [
-            {
-                "name": "PUID",
-                "label": "PUID",
-                "default": "1024",
-                "description": "for UserID"
-            },
-            {
-                "name": "PGID",
-                "label": "PGID",
-                "default": "100",
-                "description": "for GroupID"
-            },
-            {
-                "name": "TZ",
-                "label": "TZ",
-                "default": "america/new_york",
-                "description": "Specify a timezone to use for example America/New_York"
-            }
-        ],
-        "ports": [
-            "8123:8123/tcp"
-        ],
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "/volume1/docker/homeassistant/config"
-            }
-        ],
-        "restart_policy": "unless-stopped"
-    },
-    {
-        "categories": [
-            "Gaming"
-        ],
-        "description": "Server version of minetest, a free, open source alternative to minecraft.",
-        "env": [
-            {
-                "default": "1000",
-                "label": "PUID",
-                "name": "PUID"
-            },
-            {
-                "default": "100",
-                "label": "PGID",
-                "name": "PGID"
-            }
-        ],
-        "image": "lscr.io/linuxserver/minetest:latest",
-        "logo": "https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/minetest-icon.png",
-        "name": "minetest",
-        "platform": "linux",
-        "ports": [
-            "30000:30000/udp"
-        ],
-        "restart_policy": "unless-stopped",
-        "title": "Minetest",
-        "type": 1,
-        "volumes": [
-            {
-                "container": "/config/.minetest"
-            }
-        ]
-    },
-    {
-        "categories": [
-            "Proxy",
-            "Tools"
-        ],
-        "description": "Nginx Proxy Manager enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.",
-        "image": "jlesage/nginx-proxy-manager",
-        "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/proxy_mgr.png",
-        "name": "nginx-proxy-manager",
-        "platform": "linux",
-        "ports": [
-            "80:8080/tcp",
-            "81:8181/tcp",
-            "443:4443/tcp"
-        ],
-        "restart_policy": "unless-stopped",
-        "title": "Nginx Proxy Manager",
-        "type": 1,
-        "volumes": [
-            {
-                "bind": "/portainer/Files/AppData/Config/Nginx-Proxy",
-                "container": "/config"
-            }
-        ]
-    },
-    {
-        "categories": [
-            "Other",
-            "Tools"
-        ],
-        "description": "Code-server is VS Code running on a remote server, accessible through the browser.",
-        "env": [
-            {
-                "default": "1000",
-                "label": "PUID",
-                "name": "PUID"
-            },
-            {
-                "default": "1000",
-                "label": "PUID",
-                "name": "GUID"
-            },
-            {
-                "label": "TZ",
-                "name": "TZ",
-                "default": "america/new_york",
-                "description": "Specify a timezone to use for example America/New_York"
-            },
-            {
-                "label": "PASSWORD",
-                "name": "PASSWORD"
-            },
-            {
-                "label": "SUDO_PASSWORD",
-                "name": "SUDO_PASSWORD"
-            },
-            {
-                "default": "example.my.domain",
-                "label": "PROXY_DOMAIN",
-                "name": "PROXY_DOMAIN"
-            }
-        ],
-        "image": "lscr.io/linuxserver/code-server:latest",
-        "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/code-server.png",
-        "name": "code-server",
-        "platform": "linux",
-        "ports": [
-            "8443:8443/tcp"
-        ],
-        "restart_policy": "unless-stopped",
-        "title": "Code Server",
-        "type": 1,
-        "volumes": [
-            {
-                "bind": "/portainer/Files/AppData/Config/Code-Server",
-                "container": "/config"
-            }
-        ]
-    },
-    {
-        "categories": [
-            "Downloaders",
-            "Other",
-            "Video",
-            "Tools"
-        ],
-        "description": "Simple automated way for users to request new content for Plex.",
-        "env": [
-            {
-                "default": "1000",
-                "label": "PUID",
-                "name": "PUID"
-            },
-            {
-                "default": "100",
-                "label": "PGID",
-                "name": "PGID"
-            },
-            {
-                "label": "URL_BASE",
-                "name": "URL_BASE",
-                "set": ""
-            }
-        ],
-        "image": "lscr.io/linuxserver/plexrequests:latest",
-        "logo": "https://raw.githubusercontent.com/linuxserver/beta-templates/master/lsiodev/img/plexrequests-icon.png",
-        "name": "plexrequests",
-        "platform": "linux",
-        "ports": [
-            "3000:3000/tcp"
-        ],
-        "restart_policy": "unless-stopped",
-        "title": "Plex Requests",
-        "type": 1,
-        "volumes": [
-            {
-                "bind": "/portainer/Files/AppData/Config/PlexRequests",
-                "container": "/config"
-            }
-        ]
-    },
-    ,
-    {
-        "type": 1,
-        "title": "Emulatorjs",
-        "name": "Emulatorjs",
-        "note": "Portainer App Templates based on data provided by <a href='https://www.linuxserver.io' target='_blank'>LinuxServer.io</a>.</p><p>Don't forget to create the volume directories on the host file system.</p><p>mkdir -p /volume1/docker/emulatorjs/config<br>mkdir -p /volume1/docker/emulatorjs/data</p>",
-        "description": "[Emulatorjs](https://github.com/linuxserver/emulatorjs) - In browser web based emulation portable to nearly any device for many retro consoles. A mix of emulators is used between Libretro and EmulatorJS.",
-        "platform": "linux",
-        "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/emulatorjs-logo.png",
-        "image": "linuxserver/emulatorjs:latest",
-        "env": [
-            {
-                "name": "PUID",
-                "label": "PUID",
-                "default": "1024",
-                "description": "for UserID"
-            },
-            {
-                "name": "PGID",
-                "label": "PGID",
-                "default": "100",
-                "description": "for GroupID"
-            },
-            {
-                "name": "TZ",
-                "label": "TZ",
-                "default": "america/new_york",
-                "description": "Specify a timezone to use for example America/New_York"
-            },
-            {
-                "name": "SUBFOLDER",
-                "label": "SUBFOLDER",
-                "default": "/",
-                "description": "Specify a subfolder for reverse proxies IE '/FOLDER/'"
-            }
-        ],
-        "ports": [
-            "3000:3000/tcp",
-            "80:80/tcp",
-            "4001:4001/tcp"
-        ],
-        "volumes": [
-            {
-                "container": "/config",
-                "bind": "/volume1/docker/emulatorjs/config"
-            },
-            {
-                "container": "/data",
-                "bind": "/volume1/docker/emulatorjs/data"
-            }
-        ],
-        "restart_policy": "unless-stopped"
-    }
+	{
+		"categories": [
+			"Video",
+			"Music",
+			"Photos"
+		],
+		"description": "Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps.",
+		"env": [
+			{
+				"default": "1000",
+				"label": "PUID",
+				"name": "PUID"
+			},
+			{
+				"default": "100",
+				"label": "PGID",
+				"name": "PGID"
+			},
+			{
+				"label": "TZ",
+				"name": "TZ"
+			}
+		],
+		"image": "lscr.io/linuxserver/jellyfin:latest",
+		"logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/jellyfin.png",
+		"name": "jellyfin",
+		"platform": "linux",
+		"ports": [
+			"8096:8096/tcp",
+			"8920:8920/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Jellyfin",
+		"type": 1,
+		"volumes": [
+			{
+				"bind": "/portainer/Files/AppData/Config/Jelllyfin",
+				"container": "/config"
+			},
+			{
+				"bind": "/portainer/TV",
+				"container": "/data/tvshows"
+			},
+			{
+				"bind": "/portainer/Movies",
+				"container": "/data/movies"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Other",
+			"Tools"
+		],
+		"description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
+		"image": "pihole/pihole:latest",
+		"logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/pihole.png",
+		"name": "pihole",
+		"note": "When the installation is complete, navigate to your.ip.goes.here:1010/admin. Follow the article <a href='https://medium.com/@niktrix/getting-rid-of-systemd-resolved-consuming-port-53-605f0234f32f'>here</a> if you run into issues binding to port 53.",
+		"platform": "linux",
+		"ports": [
+			"53:53/tcp",
+			"53:53/udp",
+			"67:67/udp",
+			"1010:80/tcp",
+			"4443:443/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Pi-Hole",
+		"type": 1,
+		"volumes": [
+			{
+				"container": "/etc/pihole",
+				"bind": "/portainer/Files/AppData/Config/PiHole"
+			},
+			{
+				"container": "/etc/dnsmasq.d",
+				"bind": "/portainer/Files/AppData/Config/PiHole/DNS"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Tools",
+			"Web",
+			"Other"
+		],
+		"description": "Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.",
+		"env": [
+			{
+				"default": "1000",
+				"label": "PUID",
+				"name": "PUID"
+			},
+			{
+				"default": "100",
+				"label": "PGID",
+				"name": "PGID"
+			}
+		],
+		"image": "lscr.io/linuxserver/heimdall:latest",
+		"logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/heimdall-icon.png",
+		"name": "heimdall",
+		"platform": "linux",
+		"ports": [
+			"80/tcp",
+			"443/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Heimdall",
+		"type": 1,
+		"volumes": [
+			{
+				"bind": "/portainer/Files/AppData/Config/Heimdall",
+				"container": "/config"
+			}
+		]
+	},
+	{
+		"categories": [
+			"Home Automation"
+		],
+		"description": "[Home Assistant Core](https://www.home-assistant.io/) - Open source home automation that puts local control and privacy first. Powered by a worldwide community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi or a local server.",
+		"env": [
+			{
+				"name": "PUID",
+				"label": "PUID",
+				"default": "1024",
+				"description": "for UserID"
+			},
+			{
+				"name": "PGID",
+				"label": "PGID",
+				"default": "100",
+				"description": "for GroupID"
+			},
+			{
+				"name": "TZ",
+				"label": "TZ",
+				"default": "america/new_york",
+				"description": "Specify a timezone to use for example America/New_York"
+			}
+		],
+		"image": "linuxserver/homeassistant:latest",
+		"logo": "https://github.com/home-assistant/home-assistant.io/raw/next/source/images/favicon-192x192-full.png",
+		"name": "Homeassistant",
+		"network": "host",
+		"note": "Portainer App Templates based on data provided by <a href='https://www.linuxserver.io' target='_blank'>LinuxServer.io</a>.</p><p>Don't forget to create the volume directories on the host file system.</p><p>mkdir -p /volume1/docker/homeassistant/config</p>",
+		"platform": "linux",
+		"ports": [
+			"8123:8123/tcp"
+		],
+		"restart_policy": "unless-stopped",
+		"title": "Homeassistant",
+		"type": 1,
+		"volumes": [
+			{
+				"container": "/config",
+				"bind": "/volume1/docker/homeassistant/config"
+			}
+		]
+	}
 ]
