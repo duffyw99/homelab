@@ -19,7 +19,9 @@
             },
             {
                 "label": "TZ",
-                "name": "TZ"
+                "name": "TZ",
+                "default": "america/new_york",
+                "description": "Specify a timezone to use for example America/New_York"
             }
         ],
         "image": "lscr.io/linuxserver/jellyfin:latest",
@@ -238,7 +240,9 @@
             },
             {
                 "label": "TZ",
-                "name": "TZ"
+                "name": "TZ",
+                "default": "america/new_york",
+                "description": "Specify a timezone to use for example America/New_York"
             },
             {
                 "label": "PASSWORD",
