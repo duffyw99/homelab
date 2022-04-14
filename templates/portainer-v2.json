@@ -451,6 +451,92 @@
                     "container": "/data"
                 }
             ]
+        },
+        {
+            "categories": [
+                "Cloud",
+                "Productivity",
+                "Tools",
+                "Other",
+                "Web"
+            ],
+            "description": "Where are your photos and documents? With Nextcloud you pick a server of your choice, at home, in a data center or at a provider. And that is where your files will be. Nextcloud runs on that server, protecting your data and giving you access from your desktop or mobile devices.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                },
+                {
+                    "label": "TZ",
+                    "name": "TZ",
+                    "default": "america/new_york",
+                    "description": "Specify a timezone to use for example America/New_York"
+                },
+                {
+                    "label": "DATABASE_PASSWORD",
+                    "name": "DATABASE_PASSWORD"
+                },
+                {
+                    "label": "MYSQL_ROOT_PASSWORD",
+                    "name": "MYSQL_ROOT_PASSWORD"
+                },
+                {
+                    "label": "PORT",
+                    "name": "PORT"
+                }
+            ],
+            "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/nextcloud-icon.png",
+            "name": "nextcloud",
+            "note": "The database user is nextcloud and the database is nextcloud_db. The host of the database will be located at the bottom of the DB conotainer in portainer.",
+            "platform": "linux",
+            "repository": {
+                "stackfile": "Template/Stack/nextcloud.yml",
+                "url": "https://github.com/Qballjos/portainer_templates"
+            },
+            "title": "Nextcloud",
+            "type": 3
+        },
+        {
+            "categories": [
+                "Web",
+                "Proxy"
+            ],
+            "description": "Nginx is a web server with a strong focus on high concurrency, performance and low memory usage. It can also act as a reverse proxy server for HTTP, HTTPS, SMTP, POP3, and IMAP protocols, as well as a load balancer and an HTTP cache.",
+            "env": [
+                {
+                    "default": "1000",
+                    "label": "PUID",
+                    "name": "PUID"
+                },
+                {
+                    "default": "100",
+                    "label": "PGID",
+                    "name": "PGID"
+                }
+            ],
+            "image": "linuxserver/nginx:latest",
+            "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/nginx-icon.png",
+            "name": "nginx",
+            "platform": "linux",
+            "ports": [
+                "80/tcp",
+                "443/tcp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "Nginx",
+            "type": 1,
+            "volumes": [
+                {
+                    "bind": "/portainer/Files/AppData/Config/Nginx",
+                    "container": "/config"
+                }
+            ]
         }
     ]
 }
