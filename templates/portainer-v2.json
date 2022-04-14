@@ -241,7 +241,74 @@
         },
         {
             "categories": [
-                "Other"
+                "Games"
+            ],
+            "description": "Spin up your own Minecraft server",
+            "env": [
+                {
+                    "name": "PUID",
+                    "label": "PUID",
+                    "default": "1000"
+                },
+                {
+                    "name": "PGID",
+                    "label": "PGID",
+                    "default": "100"
+                },
+                {
+                    "name": "EULA",
+                    "label": "EULA",
+                    "default": "TRUE"
+                },
+                {
+                    "name": "GAMEMODE",
+                    "label": "GAMEMODE",
+                    "default": "survival"
+                },
+                {
+                    "name": "DIFFICULTY",
+                    "label": "DIFFICULTY",
+                    "default": "normal"
+                },
+                {
+                    "name": "LEVEL_NAME",
+                    "label": "LEVEL_NAME",
+                    "description": "Give your world a name"
+                },
+                {
+                    "name": "LEVEL_SEED",
+                    "label": "LEVEL_SEED",
+                    "default": "113460335",
+                    "description": "This seed will randomly generate your world"
+                },
+                {
+                    "name": "WHITE_LIST_USERS",
+                    "label": "WHITE_LIST_USERS",
+                    "default": "player1, player2",
+                    "description": "Who can join your world? Separate player names with a comma"
+                }
+            ],
+            "image": "itzg/minecraft-bedrock-server:latest",
+            "logo": "https://cdn.freebiesupply.com/logos/large/2x/minecraft-1-logo-png-transparent.png",
+            "name": "minecraft-bedrock",
+            "note": "https://github.com/itzg/docker-minecraft-bedrock-server",
+            "platform": "linux",
+            "ports": [
+                "19132:19132/udp"
+            ],
+            "restart_policy": "unless-stopped",
+            "title": "MineCraftBedrock",
+            "type": 1,
+            "volumes": [
+                {
+                    "container": "/bds",
+                    "bind": "/data/"
+                }
+            ]
+        },
+        {
+            "categories": [
+                "Games"
             ],
             "description": "Server version of minetest, a free, open source alternative to minecraft.",
             "env": [
