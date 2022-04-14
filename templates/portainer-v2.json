@@ -56,6 +56,9 @@
             ]
         },
         {
+            "categories": [
+                "Games"
+            ],
             "description": "[Emulatorjs](https://github.com/linuxserver/emulatorjs) - In browser web based emulation portable to nearly any device for many retro consoles. A mix of emulators is used between Libretro and EmulatorJS.",
             "env": [
                 {
@@ -109,9 +112,7 @@
         },
         {
             "categories": [
-                "Tools",
-                "Web",
-                "Other"
+                "Tools"
             ],
             "description": "Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.",
             "env": [
@@ -344,7 +345,6 @@
                 "Cloud",
                 "Productivity",
                 "Tools",
-                "Other",
                 "Web"
             ],
             "description": "Where are your photos and documents? With Nextcloud you pick a server of your choice, at home, in a data center or at a provider. And that is where your files will be. Nextcloud runs on that server, protecting your data and giving you access from your desktop or mobile devices.",
@@ -479,6 +479,53 @@
                 {
                     "container": "/etc/dnsmasq.d",
                     "bind": "/portainer/Files/AppData/Config/PiHole/DNS"
+                }
+            ]
+        },
+        {
+            "type": 1,
+            "title": "Plex",
+            "name": "plex",
+            "description": "Your favorite movies, TV, music, web shows, podcasts, and more, all streamed to your favorite screens.",
+            "logo": "https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/plex-icon.png",
+            "image": "lscr.io/linuxserver/plex:latest",
+            "categories": [
+                "Video",
+                "Music",
+                "Photos"
+            ],
+            "platform": "linux",
+            "restart_policy": "unless-stopped",
+            "network": "host",
+            "volumes": [
+                {
+                    "container": "/config",
+                    "bind": "/portainer/Files/AppData/Config/Plex"
+                },
+                {
+                    "container": "/tv",
+                    "bind": "/portainer/TV"
+                },
+                {
+                    "container": "/movies",
+                    "bind": "/portainer/Movies"
+                }
+            ],
+            "env": [
+                {
+                    "name": "PUID",
+                    "label": "PUID",
+                    "default": "1000"
+                },
+                {
+                    "name": "PGID",
+                    "label": "PGID",
+                    "default": "100"
+                },
+                {
+                    "name": "VERSION",
+                    "label": "VERSION",
+                    "set": "latest"
                 }
             ]
         },
